@@ -87,13 +87,13 @@ $alumnos = [
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($alumnos as $matricula => $alumno): ?>
+            <?php foreach ($alumnos as $alumno): ?>
             <tr>
-                <td><?php echo $matricula; ?></td>
+                <td><?php echo $alumno['id']; ?></td>
                 <td><?php echo $alumno['nombre']; ?></td>
                 <td><?php echo $alumno['carrera']; ?></td>
                 <td>
-                    <a href="detalle_alumno.php?matricula=<?php $matricula['id']; ?>">
+                    <a href="detalle_alumno.php?id=<?php echo $alumno['id']; ?>">
                         Ver Detalles
                     </a>
                 </td>

@@ -28,12 +28,20 @@ $alumnos = [
 ];
 
 // Obtener la matrícula del alumno desde GET
-$matricula = $_GET['matricula'] ?? '';
+$id = $_GET['id'] ?? '';
+//echo "$id <br>";
 
 // Verificar si el alumno existe
+$encontrado = [];
+foreach($alumnos as $alumno){
+    if($alumno['id'] == $id){
+        $encontrado = $alumno;
+        break;
+    }
+}
 
+if(count($encontrado)!=0):
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -82,30 +90,29 @@ $matricula = $_GET['matricula'] ?? '';
 </head>
 <body>
     <h1>Detalle del Alumno</h1>
-    
     <div class="detalle-alumno">
         <div class="campo">
-            <strong>Matrícula:</strong> <?php echo htmlspecialchars($matricula); ?>
+            <strong>Matrícula:</strong> <?php echo $encontrado['id']; ?>
         </div>
         <div class="campo">
-            <strong>Nombre:</strong> <?php echo htmlspecialchars($alumno['nombre']); ?>
+            <strong>Nombre:</strong> <?php echo $encontrado['nombre']; ?>
         </div>
         <div class="campo">
-            <strong>Edad:</strong> <?php echo htmlspecialchars($alumno['edad']); ?> años
+            <strong>Edad:</strong> <?php echo $encontrado['edad']; ?> años
         </div>
         <div class="campo">
-            <strong>Carrera:</strong> <?php echo htmlspecialchars($alumno['carrera']); ?>
+            <strong>Carrera:</strong> <?php echo $encontrado['carrera']; ?>
         </div>
         <div class="campo">
-            <strong>Email:</strong> <?php echo htmlspecialchars($alumno['email']); ?>
+            <strong>Email:</strong> <?php echo $encontrado['email']; ?>
         </div>
         <div class="campo">
-            <strong>Promedio:</strong> <?php echo htmlspecialchars($alumno['promedio']); ?>
+            <strong>Promedio:</strong> <?php echo $encontrado['promedio']; ?>
         </div>
     </div>
     
     <a href="lista_alumnos.php" class="volver">Volver a la lista</a>
 </body>
 </html>
-
+<?php else: echo "No se encontró el estudiante";endif;?>
 
