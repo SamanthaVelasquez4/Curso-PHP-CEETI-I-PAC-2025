@@ -1,44 +1,11 @@
 <?php
-// Datos de ejemplo (en un caso real vendrían de una base de datos)
-$alumnos = [
-    [
-        'id' =>'A001',
-        'nombre' => 'María González',
-        'edad' => 20,
-        'carrera' => 'Ingeniería Informática',
-        'email' => 'maria@ejemplo.edu',
-        'promedio' => 8.5
-    ],
-    [
-        'id' => 'A002',
-        'nombre' => 'Carlos Pérez',
-        'edad' => 22,
-        'carrera' => 'Administración de Empresas',
-        'email' => 'carlos@ejemplo.edu',
-        'promedio' => 7.8
-    ],
-    [
-        'id' => 'A003',
-        'nombre' => 'Laura Martínez',
-        'edad' => 21,
-        'carrera' => 'Derecho',
-        'email' => 'laura@ejemplo.edu',
-        'promedio' => 9.1
-    ]
-];
+include_once "dbconnection.php";
 
-// Obtener la matrícula del alumno desde GET
-$id = $_GET['id'] ?? '';
-//echo "$id <br>";
+$query = "SELECT * FROM personas WHERE id=?;";
+$result = $conexion->execute_query($query, [$_GET["id"]]);
 
-// Verificar si el alumno existe
-$encontrado = [];
-foreach($alumnos as $alumno){
-    if($alumno['id'] == $id){
-        $encontrado = $alumno;
-        break;
-    }
-}
+$encontrado = $result->fetch_assoc();
+//var_dump($encontrado);
 
 if(count($encontrado)!=0):
 ?>

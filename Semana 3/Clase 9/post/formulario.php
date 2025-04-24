@@ -186,7 +186,7 @@ if($bandera){
     <div class="profile-container">
         <div class="profile-header">
             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar" class="profile-avatar">
-            <h1 class="profile-name">Juan Pérez</h1>
+            <h1 class="profile-name"><?php echo "$nombre" ?></h1>
             <div class="profile-age">32 años</div>
         </div>
         

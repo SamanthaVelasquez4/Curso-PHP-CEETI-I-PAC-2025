@@ -1,31 +1,23 @@
 <?php
-// Datos de ejemplo (en un caso real vendrían de una base de datos)
-$alumnos = [
-    [
-        'id' =>'A001',
-        'nombre' => 'María González',
-        'edad' => 20,
-        'carrera' => 'Ingeniería Informática',
-        'email' => 'maria@ejemplo.edu',
-        'promedio' => 8.5
-    ],
-    [
-        'id' => 'A002',
-        'nombre' => 'Carlos Pérez',
-        'edad' => 22,
-        'carrera' => 'Administración de Empresas',
-        'email' => 'carlos@ejemplo.edu',
-        'promedio' => 7.8
-    ],
-    [
-        'id' => 'A003',
-        'nombre' => 'Laura Martínez',
-        'edad' => 21,
-        'carrera' => 'Derecho',
-        'email' => 'laura@ejemplo.edu',
-        'promedio' => 9.1
-    ]
-];
+include_once "dbconnection.php";
+
+//READ 
+$query = "SELECT * FROM personas;";
+$result = $conexion->execute_query($query);
+
+$alumnos = [];
+
+if ($result) {
+    foreach($result as $row){
+        $alumnos[] = [
+            "id"=> $row["id"],
+            "nombre" => $row["nombre"],
+            "edad"=>$row["edad"],
+            "carrera"=>$row["carrera"],
+            "promedio"=>$row["promedio"],
+        ];
+    } 
+}
 ?>
 
 <!DOCTYPE html>
